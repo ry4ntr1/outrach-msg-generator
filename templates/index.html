@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2 class="text-2xl font-semibold text-gray-800 mb-6">Upload Resume and Job Description</h2>
+    <form action="/generate_message" method="post" enctype="multipart/form-data" class="bg-white rounded-lg shadow p-6">
+        <div class="mb-4">
+            <label for="resume" class="block text-gray-800 font-semibold mb-2">Resume (PDF):</label>
+            <input type="file" name="resume.pdf" id="resume" required class="border rounded-lg px-3 py-2">
+        </div>
+        <div class="mb-6">
+            <label for="job_description" class="block text-gray-800 font-semibold mb-2">Job Description (TXT):</label>
+            <input type="file" name="job_description.txt" id="job_description" required class="border rounded-lg px-3 py-2">
+        </div>
+        <input type="submit" value="Generate Message" class="bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-800">
+    </form>
+{% endblock %}
