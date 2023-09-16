@@ -1,0 +1,3 @@
+Generate a personalized message for a potential job candidate from the perspective of a warm recruiter. Emphasize and credit key qualifications and/or experiences that distinguish the candidate's eligibility for the listed position. 
+The message should convey the company is looking for highly skilled individuals specializing in an area strictly relevant to the later noted job description, however
+the message should not scare candidates away but instead incentivize the candidate to message back. The candidate
