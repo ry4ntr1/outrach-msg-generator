@@ -36,7 +36,7 @@ defusedxml @ file:///home/conda/feedstock_root/build_artifacts/defusedxml_161523
 entrypoints @ file:///home/conda/feedstock_root/build_artifacts/entrypoints_1643888246732/work
 executing @ file:///home/conda/feedstock_root/build_artifacts/executing_1667317341051/work
 fastjsonschema @ file:///home/conda/feedstock_root/build_artifacts/python-fastjsonschema_1677336799617/work/dist
-Flask==2.3.1
+Flask==2.2.5
 flit_core @ file:///home/conda/feedstock_root/build_artifacts/flit-core_1667734568827/work/source/flit_core
 fonttools @ file:///Users/runner/miniforge3/conda-bld/fonttools_1680021503821/work
 fqdn==1.5.1
