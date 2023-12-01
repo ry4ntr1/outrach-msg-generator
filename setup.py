@@ -12,7 +12,7 @@ setup(
     install_requires=[
         "Flask==2.1.1",
         "openai==0.27.0",
-        "PyPDF2==1.26.0",
+        "PyPDF2==1.27.9",
         "Werkzeug==2.1.1",
         "pdfminer.six==20201018",
         "python-dotenv==0.19.2",

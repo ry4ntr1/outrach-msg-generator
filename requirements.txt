@@ -105,7 +105,7 @@ pycparser @ file:///home/conda/feedstock_root/build_artifacts/pycparser_16362571
 Pygments==2.15.1
 pyOpenSSL @ file:///home/conda/feedstock_root/build_artifacts/pyopenssl_1680037383858/work
 pyparsing @ file:///home/conda/feedstock_root/build_artifacts/pyparsing_1652235407899/work
-PyPDF2==3.0.1
+PyPDF2==1.27.9
 pyrsistent @ file:///Users/runner/miniforge3/conda-bld/pyrsistent_1672681537313/work
 PySocks @ file:///home/conda/feedstock_root/build_artifacts/pysocks_1661604839144/work
 python-dateutil @ file:///home/conda/feedstock_root/build_artifacts/python-dateutil_1626286286081/work
