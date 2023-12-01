@@ -10,7 +10,7 @@ setup(
     packages=find_packages(),
     include_package_data=True,
     install_requires=[
-        "Flask==2.1.1",
+        "Flask==2.2.5",
         "openai==0.27.0",
         "PyPDF2==1.26.0",
         "Werkzeug==2.1.1",
