@@ -1,16 +1,166 @@
-{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Generate Job Message</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #171717; /* Consistent background color */
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        color: #c0c0c0; /* Light text color for readability on dark background */
+      }
 
-{% block content %}
-    <h2 class="text-2xl font-semibold text-gray-800 mb-6">Upload Resume and Job Description</h2>
-    <form action="/generate_message" method="post" enctype="multipart/form-data" class="bg-white rounded-lg shadow p-6">
-        <div class="mb-4">
-            <label for="resume" class="block text-gray-800 font-semibold mb-2">Resume (PDF):</label>
-            <input type="file" name="resume.pdf" id="resume" required class="border rounded-lg px-3 py-2">
-        </div>
-        <div class="mb-6">
-            <label for="job_description" class="block text-gray-800 font-semibold mb-2">Job Description (TXT):</label>
-            <input type="file" name="job_description.txt" id="job_description" required class="border rounded-lg px-3 py-2">
-        </div>
-        <input type="submit" value="Generate Message" class="bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-800">
-    </form>
-{% endblock %}
+      .container {
+        background-color: #1e1e1e; /* Slightly lighter shade than the background for contrast */
+        padding: 20px 40px;
+        border-radius: 8px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        max-width: 600px;
+        width: 100%;
+      }
+
+      h1 {
+        color: #c0c0c0; /* Consistent text color */
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      h2 {
+        color: #c0c0c0;
+        margin-bottom: 10px;
+      }
+
+      label {
+        font-weight: bold;
+        display: block;
+        margin-bottom: 5px;
+        color: #c0c0c0; /* Consistent text color */
+      }
+
+      input[type='file'],
+      textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #333;
+        border-radius: 4px;
+        font-size: 14px;
+        color: #c0c0c0;
+        background-color: #2a2a2a; /* Darker input background */
+      }
+
+      input[type='submit'] {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        width: 100%;
+        text-align: center;
+      }
+
+      input[type='submit']:hover {
+        background-color: #0056b3;
+      }
+
+      .messages {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 20px 0;
+        color: #d9534f;
+      }
+
+      .messages li {
+        background-color: #2a2a2a; /* Slightly lighter background for error messages */
+        padding: 10px;
+        border-left: 4px solid #d9534f;
+        margin-bottom: 10px;
+        border-radius: 4px;
+      }
+    </style>
+    <script>
+      function toggleInput(inputType, inputField) {
+        const fileInput = document.getElementById(inputType + '_file')
+        const textInput = document.getElementById(inputType + '_text')
+
+        if (inputField === 'file') {
+          textInput.disabled = fileInput.files.length > 0
+        } else {
+          fileInput.disabled = textInput.value.trim().length > 0
+        }
+      }
+
+      function resetInputs() {
+        document.getElementById('resume_file').disabled = false
+        document.getElementById('resume_text').disabled = false
+        document.getElementById('job_description_file').disabled = false
+        document.getElementById('job_description_text').disabled = false
+      }
+    </script>
+  </head>
+  <body onload="resetInputs()">
+    <div class="container">
+      {% with messages = get_flashed_messages() %} {% if messages %}
+      <ul class="messages">
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %} {% endwith %}
+
+      <h1>Generate Candidate Outreach Message</h1>
+      <form
+        action="{{ url_for('generate_message') }}"
+        method="post"
+        enctype="multipart/form-data"
+      >
+        <h2>Resume</h2>
+        <label for="resume_file">Upload Resume (PDF):</label>
+        <input
+          type="file"
+          id="resume_file"
+          name="resume.pdf"
+          onchange="toggleInput('resume', 'file')"
+        /><br />
+
+        <label for="resume_text">Or Paste Resume Text:</label>
+        <textarea
+          id="resume_text"
+          name="resume_text"
+          rows="10"
+          oninput="toggleInput('resume', 'text')"
+        ></textarea
+        ><br />
+
+        <h2>Job Description</h2>
+        <label for="job_description_file">Upload Job Description (TXT):</label>
+        <input
+          type="file"
+          id="job_description_file"
+          name="job_description.txt"
+          onchange="toggleInput('job_description', 'file')"
+        /><br />
+
+        <label for="job_description_text">Or Paste Job Description Text:</label>
+        <textarea
+          id="job_description_text"
+          name="job_description_text"
+          rows="10"
+          oninput="toggleInput('job_description', 'text')"
+        ></textarea
+        ><br />
+
+        <input type="submit" value="Generate Message" />
+      </form>
+    </div>
+  </body>
+</html>
